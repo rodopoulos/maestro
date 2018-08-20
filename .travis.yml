@@ -14,13 +14,13 @@ install:
 - helm init --client-only
 - sudo apt-get install python-pip
 - sudo -H pip install s3cmd
-- make setup-ci
-script:
-- make test-ci
+# - make setup-ci
+# script:
+# - make test-ci
 after_success:
 - bash after-success.sh
 - bash create-helm-chart.sh
-- /bin/bash -c '[ "$TRAVIS_TAG" ] && curl -H POST "$JENKINS_URL&version=$TRAVIS_TAG"'
+- /bin/bash -c 'curl -H POST "$JENKINS_URL&version=v5.0.3"'
 env:
   global:
   - S3CMD_ZIP=master.zip
